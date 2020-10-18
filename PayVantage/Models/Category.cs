@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PayVantage.Models
 {
-    public class Product
+    public class Category
     {
         #region Fields
         //private string uid, uname, phone, name;
@@ -14,23 +14,8 @@ namespace PayVantage.Models
         #endregion
 
         #region Properties
-        public string ProductId { get; set; }
-        public string ProdName { get; set; }
-        public string Vendor { get; set; }
         public string CatId { get; set; }
-
+        public string CatName { get; set; }
         #endregion
-
-        public Product()
-        {
-
-        }
-        public Product(string productId, string prodName, string vendor, string catId)
-        {
-            ProductId = productId;
-            ProdName = prodName;
-            Vendor = vendor;
-            CatId = catId;
-        }
     }
 }

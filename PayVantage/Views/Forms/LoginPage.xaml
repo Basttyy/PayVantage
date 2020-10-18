@@ -27,9 +27,9 @@
     </ContentPage.Resources>
 
     <!--  Binding context for login page  -->
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModel:LoginPageViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <Grid>
@@ -82,7 +82,7 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Let's get to work" />
+                            Text="Vantagerecharge login page" />
 
                         <!--  Entry to get email ID from user  -->
                         <local:EmailEntry Grid.Row="2" Padding="0,24" />

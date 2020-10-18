@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PayVantage.Views.Navigation.TransactionsPage"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="White"
+                    Grid.Row="1"
+                    HasShadow="True"
+                   Margin="10">
+                <Label
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    LineHeight="{OnPlatform Android=1.5,
+                                            Default=-1}"
+                    Text="Transaction List"
+                    TextColor="{DynamicResource Gray-900}" />
+            </Frame>
+            <ListView x:Name="TransView"
+                        Grid.Row="2"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                        ItemsSource="{Binding Transactions}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                Text="{Binding ProdName}"
+                                HorizontalOptions="Center"/>
+                                <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                Text="{Binding Amount}"
+                                HorizontalOptions="End"/>
+                                <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Status}"/>
+                                <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding VendTime}"/>
+                                <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{Binding AccountNum}"/>
+                                <Label Grid.Row="2"
+                                   Grid.Column="1"
+                                   Text="{Binding TransId}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

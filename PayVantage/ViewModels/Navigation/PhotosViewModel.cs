@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using PayVantage.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -30,7 +29,7 @@ namespace PayVantage.ViewModels.Navigation
         /// </summary>
         /// <value>The photos.</value>
         [DataMember(Name = "photos")]
-        public ObservableCollection<Photo> Photos { get; set; }
+        //public ObservableCollection<Photo> Photos { get; set; }
 
         /// <summary>
         /// Gets the command is executed when the add button is clicked.

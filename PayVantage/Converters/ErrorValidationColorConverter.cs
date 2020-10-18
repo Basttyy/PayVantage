@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PayVantage.Controls;
 using PayVantage.ViewModels.Forms;
+using PayVantage.Views.Forms;
 
 namespace PayVantage.Converters
 {
@@ -35,7 +36,7 @@ namespace PayVantage.Converters
             {
                 var emailEntry = parameter as BorderlessEntry;
 
-                if (!(emailEntry.BindingContext is LoginViewModel bindingContext))
+                if (!(emailEntry.BindingContext is LoginPage bindingContext))
                 {
                     return Color.Transparent;
                 }
@@ -56,7 +57,7 @@ namespace PayVantage.Converters
             {
                 var emailEntry = parameter as BorderlessEntry;
 
-                if (!(emailEntry.BindingContext is LoginViewModel bindingContext)) return Color.FromHex("#ced2d9");
+                if (!(emailEntry.BindingContext is LoginPage bindingContext)) return Color.FromHex("#ced2d9");
 
                 var isFocused1 = (bool)value;
                 bindingContext.IsInvalidEmail = !isFocused1 && !CheckValidEmail(bindingContext.Email);

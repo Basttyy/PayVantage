@@ -37,10 +37,6 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
 
-    <ContentPage.BindingContext>
-        <viewModel:SettingViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">

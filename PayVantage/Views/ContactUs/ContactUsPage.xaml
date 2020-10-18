@@ -26,11 +26,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--  Binding context for contact us page  -->
-    <ContentPage.BindingContext>
-        <viewModel:ContactUsViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <ScrollView>
 
@@ -70,7 +65,6 @@
                                                 HorizontalOptions="Center"
                                                 Spacing="0"
                                                 VerticalOptions="Start">
-
 
                                                 <!--  Pin location header  -->
                                                 <Label

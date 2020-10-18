@@ -2,7 +2,6 @@
 using System.Runtime.Serialization;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using NavigationModel = PayVantage.Models.Navigation.NavigationModel;
 
 namespace PayVantage.ViewModels.Navigation
 {

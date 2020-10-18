@@ -34,6 +34,12 @@ namespace PayVantage.Converters
             return !isFocused && isInvalidEmail;
         }
 
+        public bool Convert(string email)
+        {
+            bool isInvalidEmail = !CheckValidEmail(email);
+            return isInvalidEmail;
+        }
+
         /// <summary>
         /// This method is used to convert the boolean to string.
         /// </summary>
