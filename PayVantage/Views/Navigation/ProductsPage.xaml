@@ -1,30 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="currentPage"
              x:Class="PayVantage.Views.Navigation.ProductsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
-            <StackLayout x:Name="prodStack" Padding="1,0,1,0" >
+            <StackLayout x:Name="vendorStack" Padding="1,0,1,0" >
                 <ListView
+                    CachingStrategy="RecycleElement"
                     x:Name="vendorsList"
                     BackgroundColor="White"
                     IsGroupingEnabled="True"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     ItemsSource="{Binding Items}"
-                    RefreshCommand="{Binding LoadHotelsCommand}"
-                    >
+                    RefreshCommand="{Binding LoadVendorsCommand}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal"  VerticalOptions="Center">
+                                <StackLayout Margin="10" Orientation="Horizontal"  VerticalOptions="Center">
                                     <Label
                                             VerticalOptions="Center"
                                             FontAttributes="Bold"
                                             FontSize="Medium"
-                                            Text="{Binding RoomName}"
+                                            Text="{Binding ProdName}"
                                             TextColor="Black"
                                             VerticalTextAlignment="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference currentPage}, Path=BindingContext.ItemTappedCommand}"  NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -32,14 +43,61 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                     <Image Source="{Binding VendorLogo}"
+                                           Grid.Column="0"
+                                           HorizontalOptions="Start"
+                                           Margin="3"
+                                           WidthRequest="40"
+                                           HeightRequest="40"/>
                                     <Label
+                                        Grid.Column="1"
                                                 FontAttributes="Bold"
                                                 FontSize="Small"
-                                                Text="{Binding Name}"
+                                                Text="{Binding VendorName}"
                                                 TextColor="Gray"
-                                                VerticalTextAlignment="Center" />
-                                    <Image x:Name="ImgA" Source="{Binding StateIcon}"  Margin="0,0,5,0" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
+                                                VerticalTextAlignment="Center"
+                                        HorizontalOptions="Center"/>
+                                    <!--<Label HorizontalOptions="End"
+                                           x:Name="ImgA"
+                                           WidthRequest="20"
+                                           Margin="0,0,5,0" HeightRequest="20"
+                                           Text="{Binding StateIcon}"
+                                           FontFamily="{StaticResource }"-->
+                                    <Image x:Name="ImgA"
+                                           Grid.Column="2"
+                                           Margin="0,0,5,0" HeightRequest="20"
+                                           WidthRequest="20"
+                                           HorizontalOptions="End"
+                                           IsVisible="{Binding UpIcon}">
+
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{StaticResource UpArrowIcon}"
+                                                             FontFamily="{StaticResource FontIcons}"
+                                                             Size="30"
+                                                             Color="Black"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Image x:Name="ImgB"
+                                           Grid.Column="2"
+                                           Margin="0,0,5,0" HeightRequest="20"
+                                           WidthRequest="20"
+                                           HorizontalOptions="End"
+                                           IsVisible="{Binding DownIcon}">
+
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{StaticResource DownArrowIcon}"
+                                                             FontFamily="{StaticResource FontIcons}"
+                                                             Size="30"
+                                                             Color="Black"/>
+                                        </Image.Source>
+                                    </Image>
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:Reference currentPage}, Path=BindingContext.RefreshItemsCommand}"  NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
                                     </Grid.GestureRecognizers>

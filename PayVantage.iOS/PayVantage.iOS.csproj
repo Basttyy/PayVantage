@@ -75,6 +75,7 @@
     <BundleResource Include="Resources\Montserrat-Medium.ttf" />
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
     <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
+    <BundleResource Include="Resources\fa-regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -193,48 +194,6 @@
       <Project>{68833F89-8E1C-4E52-A4FF-239C33299F1A}</Project>
       <Name>PayVantage</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape%402x~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape%403x~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape%404x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground-Landscape~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground%402x~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground%403x~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground%404x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground~ipad.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Card.png" />

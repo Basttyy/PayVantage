@@ -19,14 +19,14 @@
     <local:HomePage Title="Home">
         <local:HomePage.IconImageSource>
             <FontImageSource FontFamily="{StaticResource FontIcons}"
-                                 Glyph="{StaticResource EditIcon}"
+                                 Glyph="{StaticResource HomeIcon}"
                                  Size="16"/>
         </local:HomePage.IconImageSource>
     </local:HomePage>
     <local:TransactionsPage Title="Transactions">
         <local:TransactionsPage.IconImageSource>
             <FontImageSource FontFamily="{StaticResource FontIcons}"
-                                 Glyph="{StaticResource PhotosIcon}"
+                                 Glyph="{StaticResource MenuIcon}"
                                  Size="16"/>
         </local:TransactionsPage.IconImageSource>
     </local:TransactionsPage>

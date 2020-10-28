@@ -148,19 +148,26 @@ namespace PayVantage.Views.Forms
                     {
                         RestClient client = new RestClient(App.client);
                         App.TheUser = await client.LoginAsync(Email, Password);
-                        if (App.TheUser.Uname.Any())
+                        if (App.TheUser != null)
                         {
-                            NavHelper.InserPageBefore(new MainNavigationPage());
-                            await NavHelper.PopAsync();
+                            if (App.TheUser.Name.Any())
+                            {
+                                NavHelper.InserPageBefore(new MainNavigationPage());
+                                await NavHelper.PopAsync();
+                            }
+                            else
+                            {
+                                Plugin.Toast.CrossToastPopUp.Current.ShowToastError("Unable to login, please try again", Plugin.Toast.Abstractions.ToastLength.Long);
+                            }
                         }
                         else
                         {
-                            await Application.Current.MainPage.DisplayAlert("Alert", "Unable to login, please try again", "Ok");
+                            Plugin.Toast.CrossToastPopUp.Current.ShowToastError("Unable to login, please try again", Plugin.Toast.Abstractions.ToastLength.Long);
                         }
                     }
                     catch(Exception e)
                     {
-                        //await Application.Current.MainPage.DisplayAlert("error", e.Message+"\n\n"+e.InnerException+"\n\n"+e.Source+"\n\n"+e.StackTrace+"\n\n", "OK");
+                        await Application.Current.MainPage.DisplayAlert("error", e.Message+"\n\n"+e.InnerException+"\n\n"+e.Source+"\n\n"+e.StackTrace+"\n\n", "OK");
                     }
                 }
             }

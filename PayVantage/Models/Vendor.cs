@@ -4,19 +4,21 @@ using System.Text;
 
 namespace PayVantage.Models
 {
-    public class Provider
+    public class Vendor
     {
         public string VendorName { get; set; }
+        public string VendorLogo { get; set; }
         public bool IsVisible { get; set; } = false;
         public List<Product> Products { get; set; }
 
-        public Provider()
+        public Vendor()
         {
 
         }
-        public Provider(string vendor_name, List<Product> products)
+        public Vendor(string vendor_name, string vendor_logo, List<Product> products)
         {
             VendorName = vendor_name;
+            VendorLogo = vendor_logo;
             Products = products;
         }
     }

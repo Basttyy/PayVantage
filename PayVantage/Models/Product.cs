@@ -17,6 +17,7 @@ namespace PayVantage.Models
         public string ProductId { get; set; }
         public string ProdName { get; set; }
         public string Vendor { get; set; }
+        public string Logo { get; set; }
         public string CatId { get; set; }
 
         #endregion
@@ -25,11 +26,12 @@ namespace PayVantage.Models
         {
 
         }
-        public Product(string productId, string prodName, string vendor, string catId)
+        public Product(string productId, string prodName, string vendor, string logo, string catId)
         {
             ProductId = productId;
             ProdName = prodName;
             Vendor = vendor;
+            Logo = logo;
             CatId = catId;
         }
     }

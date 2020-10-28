@@ -59,7 +59,7 @@ namespace PayVantage.ViewModels.Profile
                 if (this.profileName != value)
                 {
                     this.profileName = value;
-                    this.NotifyPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace PayVantage.ViewModels.Profile
                 if (this.profileImage != value)
                 {
                     this.profileImage = value;
-                    this.NotifyPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace PayVantage.ViewModels.Profile
                 if (this.email != value)
                 {
                     this.email = value;
-                    this.NotifyPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }

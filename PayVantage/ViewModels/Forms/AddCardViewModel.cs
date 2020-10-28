@@ -54,7 +54,7 @@ namespace PayVantage.ViewModels.Forms
                 }
 
                 this.cardNumber = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -76,7 +76,7 @@ namespace PayVantage.ViewModels.Forms
                 }
 
                 this.expireDate = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -98,7 +98,7 @@ namespace PayVantage.ViewModels.Forms
                 }
 
                 this.cvv = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -120,7 +120,7 @@ namespace PayVantage.ViewModels.Forms
                 }
 
                 this.name = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -142,7 +142,7 @@ namespace PayVantage.ViewModels.Forms
                 }
 
                 this.isChecked = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 

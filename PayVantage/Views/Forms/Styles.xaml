@@ -22,8 +22,8 @@
         <Setter Property="BackgroundImageSource">
             <OnPlatform
                 x:TypeArguments="ImageSource"
-                Android="LoginBackground.png"
-                WinPhone="LoginBackground.png" />
+                Android=""
+                WinPhone="" />
         </Setter>
     </Style>
 

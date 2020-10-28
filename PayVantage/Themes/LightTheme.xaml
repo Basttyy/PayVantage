@@ -39,6 +39,13 @@
         </OnPlatform.Platforms>
     </OnPlatform>
 
+    <!--<OnPlatform x:Key="Fa-Regular" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="fa-regular.otf#fa-regular"/>
+            <On Platform="iOS" Value="fa-regular"/>
+        </OnPlatform.Platforms>
+    </OnPlatform>-->
+
     <OnPlatform x:Key="Montserrat-SemiBold" x:TypeArguments="x:String">
         <OnPlatform.Platforms>
             <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold" />

@@ -1,6 +1,8 @@
 ﻿using PayVantage.Models;
+using PayVantage.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
@@ -13,22 +15,39 @@ namespace PayVantage.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductsPage : ContentPage
     {
-        private Product _product;
-        public ProductsPage(Product product)
+        public ProductsPage(VendorsGroupViewModel viewModel)
         {
-            this._product = product;
-            this.BindingContext = this;
             InitializeComponent();
+            this.ViewModel = viewModel;
         }
 
-        public string ProductId { get { return _product.ProductId; } set { } }
-        public string ProdName { get { return _product.ProdName; } set { } }
-        public string Vendor { get { return _product.Vendor; } set { } }
-        public string CatId { get { return _product.CatId; } set { } }
-
-        public Product Product
+        private VendorsGroupViewModel ViewModel
         {
-            get => _product;
+            get { return (VendorsGroupViewModel)BindingContext; }
+            set { BindingContext = value; }
+        }
+        private List<Vendor> ListVendor = new List<Vendor>();
+
+        protected override void OnAppearing()
+        {
+            try
+            {
+                base.OnAppearing();
+                
+                if(ViewModel.Items.Count == 0)
+                {
+                    ViewModel.LoadVendorsCommand.Execute(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
+        private async void vendorsList_ItemTapped(object sender, ItemTappedEventArgs ev)
+        {
+
         }
     }
 }

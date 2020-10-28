@@ -2,10 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PayVantage.Views.Navigation.HomePage"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -128,12 +124,16 @@
 
             <ListView x:Name="CategsView"
                         Grid.Row="2"
-                        ItemsSource="{Binding Categories}">
+                        ItemsSource="{Binding Categories}"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="Red">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
-                                            Padding="15,5">
+                                         BackgroundColor="LightPink"
+                                            Padding="15,5"
+                                         Margin="0,3">
                                 <Label Text="{Binding CatId}"
                                     HorizontalOptions="Center"/>
                                 <Label Text="{Binding CatName}"

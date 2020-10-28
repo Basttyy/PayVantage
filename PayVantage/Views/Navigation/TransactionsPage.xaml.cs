@@ -20,8 +20,12 @@ namespace PayVantage.Views.Navigation
             _ = PopulateTransactions();
             InitializeComponent();
             TransView.ItemTapped += TransView_ItemTapped;
+        }
 
-            //this.BindingContext = PhotosDataService.Instance.PhotosViewModel;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _ = PopulateTransactions();
         }
 
         private void TransView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -37,7 +41,7 @@ namespace PayVantage.Views.Navigation
             {
                 RestClient client = new RestClient(App.client);
                 Transactions = await client.GetTransDetailsAsync(App.TheUser.Uname, App.TheUser.TheKey);
-                //CategsView.ItemsSource = Categories;
+                TransView.ItemsSource = Transactions;
             }
             catch (Exception e)
             {

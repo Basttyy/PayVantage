@@ -9,12 +9,19 @@
     <x:String x:Key="Rating">&#xe70c;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="Add">&#xe730;</x:String>
-    <x:String x:Key="Search">&#xe705;</x:String>
-    <x:String x:Key="PhotosIcon">&#xe731;</x:String>
-    <x:String x:Key="AlbumsIcon">&#xe726;</x:String>
     <x:String x:Key="SettingsIcon">&#xe72b;</x:String>
     <x:String x:Key="Next">&#xe71a;</x:String>
     <x:String x:Key="EditIcon">&#xe727;</x:String>
+    <x:String x:Key="UpArrowIcon">&#xe712;</x:String>
+    <x:String x:Key="DownArrowIcon">&#xe70b;</x:String>
+    <x:String x:Key="Account">&#xe70e;</x:String>
+    <x:String x:Key="Phone">&#xe71c;</x:String>
+    <x:String x:Key="Group">&#xe714;</x:String>
+    <x:String x:Key="Close">&#xe724;</x:String>
+    <x:String x:Key="List">&#xe70d;</x:String>
+    <x:String x:Key="Bell">&#xe700;</x:String>
+    <x:String x:Key="MenuIcon">&#xe72e;</x:String>
+    <x:String x:Key="HomeIcon">&#xe706;</x:String>
 
     <Style x:Key="RatingLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
@@ -26,7 +33,8 @@
 
     <Style x:Key="RightArrowLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Text" Value="{StaticResource ArrowRight}" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
@@ -43,11 +51,21 @@
         <Setter Property="VerticalTextAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="SettingsIconStyle" TargetType="Label">
+    <Style x:Key="LeftIconStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="Text" Value="{StaticResource Next}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="Margin" Value="0,0,12,0"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+    </Style>
+
+    <Style x:Key="RightIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="Margin" Value="0,0,12,0"/>
         <Setter Property="HorizontalOptions" Value="End"/>

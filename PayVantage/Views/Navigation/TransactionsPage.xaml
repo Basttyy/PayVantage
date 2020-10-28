@@ -33,11 +33,15 @@
                         Grid.Row="2"
                       HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
-                        ItemsSource="{Binding Transactions}">
+                        ItemsSource="{Binding Transactions}"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="Red">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="5">
+                            <Grid Margin="5"
+                                  Padding="10,5"
+                                  BackgroundColor="LightPink">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>

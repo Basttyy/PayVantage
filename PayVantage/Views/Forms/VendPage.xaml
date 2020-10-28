@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:PayVantage.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:PayVantage.Controls"
+    xmlns:converter="clr-namespace:PayVantage.Converters"
+    xmlns:viewModel="clr-namespace:PayVantage.ViewModels.Forms"
+             x:Class="PayVantage.Views.Forms.VendPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <ScrollView.HorizontalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="Center"
+                    Phone="FillAndExpand" />
+            </ScrollView.HorizontalOptions>
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <control:CustomShadowFrame
+                    Margin="16,24,16,32"
+                    Padding="16"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    BorderColor="{DynamicResource Gray-White}"
+                    CornerRadius="4"
+                    HasShadow="True"
+                    HorizontalOptions="Center"
+                    WidthRequest="{OnIdiom Default='550',
+                                           Phone='-1'}">
+
+                    <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Account Number"
+                            IsVisible="{Binding AcctNumVisible}"
+                            TextColor="{DynamicResource Gray-800}" />
+
+                        <!--  Card number entry and card image  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference acctNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4"
+                            IsVisible="{Binding AcctNumVisible}">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <control:BorderlessEntry
+                                    x:Name="acctNumberEntry"
+                                    Grid.Column="0"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    Keyboard="Numeric"
+                                    MaxLength="{Binding AcctMaxLength}"
+                                    Placeholder="{Binding AcctNumPlaceholder}"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding AcctNumber,Mode=TwoWay}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:AccNumEntryBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+
+                                <Image
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="StartAndExpand"
+                                    Source="Card.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="40" />
+
+                            </Grid>
+
+                        </border:SfBorder>
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Email"
+                            TextColor="{DynamicResource Gray-800}" 
+                            IsVisible="{Binding EmailVisible}"/>
+
+                        <!--  email entry and image  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference emailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4"
+                            IsVisible="{Binding EmailVisible}">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <control:BorderlessEntry
+                                    x:Name="emailEntry"
+                                    Grid.Column="0"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    Keyboard="Email"
+                                    MaxLength="19"
+                                    Placeholder="{Binding AcctNumPlaceholder}"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding Email, Mode=TwoWay}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:AccNumEntryBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+
+                                <Image
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="StartAndExpand"
+                                    Source="Card.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="40" />
+
+                            </Grid>
+
+                        </border:SfBorder>
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Amount"
+                            TextColor="{DynamicResource Gray-800}"
+                            IsVisible="{Binding AmntVisible}"/>
+
+                        <!--  Amount entry and image  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference amountEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4"
+                            IsVisible="{Binding AmntVisible}">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <control:BorderlessEntry
+                                    x:Name="amountEntry"
+                                    Grid.Column="0"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    Keyboard="Numeric"
+                                    MaxLength="19"
+                                    Placeholder="{Binding AcctNumPlaceholder}"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding Amount, Mode=TwoWay}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:AccNumEntryBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+
+                                <!--<Image
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="StartAndExpand"
+                                    Source="Card.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="40" />-->
+
+                            </Grid>
+
+                        </border:SfBorder>
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Vending Password"
+                            TextColor="{DynamicResource Gray-800}"
+                            IsVisible="false"/>
+
+                        <!--  Vending Password entry and image  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference vendPassEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4"
+                            IsVisible="false">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <control:BorderlessEntry
+                                    x:Name="vendPassEntry"
+                                    Grid.Column="0"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    Keyboard="Default"
+                                    MaxLength="19"
+                                    Placeholder="{Binding AcctNumPlaceholder}"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding vendPassword, Mode=TwoWay}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:AccNumEntryBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+
+                                <!--<Image
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="StartAndExpand"
+                                    Source="Card.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="40" />-->
+
+                            </Grid>
+
+                        </border:SfBorder>
+
+                    </StackLayout>
+
+                </control:CustomShadowFrame>
+
+                <button:SfButton
+                    Grid.Row="1"
+                    Command="{Binding VendCommand}"
+                    CommandParameter="{Binding .}"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SfButtonStyle}"
+                    Text="Vend"
+                    WidthRequest="245" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

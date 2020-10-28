@@ -71,35 +71,35 @@
                             Text="Create an account to start doing more" />
 
                         <!--  Entry to get username from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference fNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="NameEntry"
-                                Placeholder="Name"
+                                x:Name="fNameEntry"
+                                Placeholder="First name"
                                 Style="{StaticResource EntryStyle}"
-                                Text="{Binding Name}" />
+                                Text="{Binding FirstName}" />
+                        </border:SfBorder>
+
+                        <!--  Entry to get username from user  -->
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference lNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                                x:Name="lNameEntry"
+                                Placeholder="Last name"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding LastName}" />
                         </border:SfBorder>
 
                         <!--  Entry to get email ID from user  -->
                         <local:EmailEntry />
 
                         <!--  Entry to get password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="PasswordEntry"
+                                x:Name="PhoneEntry"
                                 IsPassword="true"
-                                Placeholder="Password"
+                                Keyboard="Telephone"
+                                Placeholder="Phone Number"
                                 Style="{StaticResource EntryStyle}"
                                 Text="{Binding Password}" />
-                        </border:SfBorder>
-
-                        <!--  Entry to get the confirm password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                                x:Name="ConfirmPasswordEntry"
-                                IsPassword="true"
-                                Placeholder="Confirm Password"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding ConfirmPassword}" />
                         </border:SfBorder>
 
                         <!--  Sign-up button  -->
@@ -108,7 +108,7 @@
                             CornerRadius="20"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="REGISTER" />
+                            Text="Register" />
                     </StackLayout>
 
                     <StackLayout

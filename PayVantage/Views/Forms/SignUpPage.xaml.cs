@@ -1,4 +1,5 @@
 ﻿using PayVantage.Helpers;
+using Plugin.Toast;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -145,7 +146,8 @@ namespace PayVantage.Views.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            // Do something
+            var client = new RestClient(App.client);
+            CrossToastPopUp.Current.ShowToastMessage("This feature is not implemented yet..", Plugin.Toast.Abstractions.ToastLength.Long);
         }
 
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)

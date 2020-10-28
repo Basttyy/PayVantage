@@ -11,11 +11,7 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PayVantage.Views.Forms"
     xmlns:viewModel="clr-namespace:PayVantage.ViewModels.Forms"
-    BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
-                                                                  iOSPhoneLandscape=LoginBackground-Landscape.png,
-                                                                  iOSTabletLandscape=LoginBackground-Landscape.png}"
-    NavigationPage.HasNavigationBar="False"
-    Style="{StaticResource ContentPageStyle}">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -101,7 +97,7 @@
                         </border:SfBorder>
 
                         <!--  Forgot password link  -->
-                        <Label
+                        <!--<Label
                             x:Name="ForgotPasswordLabel"
                             Grid.Row="4"
                             Margin="0,16"
@@ -113,7 +109,7 @@
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
                             </Label.GestureRecognizers>
-                        </Label>
+                        </Label>-->
 
                         <!--  Login button  -->
                         <buttons:SfButton
@@ -121,44 +117,7 @@
                             Margin="0,16"
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="LOG IN" />
-
-
-                        <Label
-                            Grid.Row="6"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Or create an account using social media" />
-
-                        <!--  Login through facebook account  -->
-                        <!--<buttons:SfButton
-                            Grid.Row="7"
-                            Margin="0,16,0,16"
-                            BackgroundColor="{DynamicResource FacebookBlue}"
-                            Command="{Binding SocialMediaLoginCommand}"
-                            CornerRadius="20"
-                            HeightRequest="40">
-                            <buttons:SfButton.Content>
-                                <StackLayout
-                                    HorizontalOptions="CenterAndExpand"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        FontFamily="{StaticResource FontIcons}"
-                                        FontSize="18"
-                                        Text="&#xe735;"
-                                        TextColor="{DynamicResource Gray-White}"
-                                        VerticalTextAlignment="Center" />
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        Text="Login with Facebook"
-                                        TextColor="{DynamicResource Gray-White}" />
-                                </StackLayout>
-                            </buttons:SfButton.Content>
-                        </buttons:SfButton> -->
-
+                            Text="Log In" />
                     </Grid>
 
                     <StackLayout

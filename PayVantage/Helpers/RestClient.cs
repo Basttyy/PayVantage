@@ -37,14 +37,22 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
 
                     usar = JsonConvert.DeserializeObject<User>(content);
+                }
+                else
+                {
+                    //await Application.Current.MainPage.DisplayAlert("Info", "Unable to login, check network...", "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", response.StatusCode.ToString(), "Ok");
+                    usar = null;
                 }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Info", "Unknow error, try again", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
+                usar = null;
             }
 
             return usar;
@@ -65,19 +73,23 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
 
                     dynamic obj = JObject.Parse(content);
 
-                    if ((string)obj.Status == "Success")
+                    if (((string)obj.data) == "Success")
                     {
                         return true;
                     }
                 }
+                else
+                {
+                    //await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "Ok");
+                }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
             }
 
             return false;
@@ -98,7 +110,7 @@ namespace PayVantage.Helpers
                 //await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
                 dynamic obj = JObject.Parse(content);
 
-                if ((string)obj.Status == "Success")
+                if (((string)obj.status) == "Success")
                 {
                     return true;
                 }
@@ -108,7 +120,7 @@ namespace PayVantage.Helpers
 
         public async Task<List<Category>> GetCategoriesAsync(string user, string tokenkey)
         {
-            await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
+            //await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
             var categories = new List<Category>();
             var userObj = new { user, tokenkey };
             var jsonObj = JsonConvert.SerializeObject(userObj);
@@ -122,7 +134,7 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
 
                     JObject content = JsonConvert.DeserializeObject<dynamic>(json);
                     if (content.Value<string>("data") == "Failed")
@@ -145,21 +157,22 @@ namespace PayVantage.Helpers
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
+                    await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
                 }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
             }
             return categories;
         }
 
-        public async Task<List<Product>> GetProductsAsync(string user, string tokenkey)
+        public async Task<List<Product>> GetProductsAsync(string user, string tokenkey, string categ)
         {
-            await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
+            //await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey + " " + categ, "Ok");
             var products = new List<Product>();
-            var userObj = new { user, tokenkey };
+            var userObj = new { user, tokenkey, categ };
             var jsonObj = JsonConvert.SerializeObject(userObj);
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Constants.ipKey);
             HttpContent httpContent = new StringContent(jsonObj, Encoding.UTF8, "application/json");
@@ -171,16 +184,20 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
 
                     JObject content = JsonConvert.DeserializeObject<dynamic>(json);
-                    if (content.Value<string>("data") == "Failed")
+                    if (json.Length < 32)
                     {
-                        await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                        if (content.Value<string>("data") == "Failed")
+                        {
+                            await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                        }
                     }
                     else
                     {
                         var _products = content.Value<JArray>("products");
+                        App.TheUser.TheKey = content.Value<JArray>("data")[0].Value<string>("sess");
 
                         foreach (var product in _products)
                         {
@@ -188,7 +205,8 @@ namespace PayVantage.Helpers
                             {
                                 ProductId = product.Value<string>("productid"),
                                 ProdName = product.Value<string>("prodname"),
-                                Vendor = product.Value<string>("category"),
+                                Vendor = product.Value<string>("vendor"),
+                                Logo = Constants.baseUrl + product.Value<string>("vendorlogo"),
                                 CatId = product.Value<string>("catid")
                             });
                         }
@@ -196,19 +214,21 @@ namespace PayVantage.Helpers
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
+                    await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
                 }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
             }
             return products;
         }
 
         public async Task<List<Transaction>> GetTransDetailsAsync(string user, string tokenkey)
         {
-            await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
+            //await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
             var transactions = new List<Transaction>();
             var transObj = new { user, tokenkey };
             var jsonObj = JsonConvert.SerializeObject(transObj);
@@ -222,7 +242,7 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Info", json, "Ok");
 
                     JObject content = JsonConvert.DeserializeObject<dynamic>(json);
                     if (content.Value<string>("data") == "Failed")
@@ -250,25 +270,27 @@ namespace PayVantage.Helpers
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
+                    await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
                 }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
             }
             return transactions;
         }
 
-        public async Task<string> VendAsync(string user, string tokenkey, string prodid, string utransid, string msid, string amount, string candemail)
+        public async Task<string[]> VendAsync(string user, string tokenkey, string prodid, string utransid, string msid, string amount, string candemail)
         {
-            await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
+            //await Application.Current.MainPage.DisplayAlert("userinfo", user + " " + tokenkey, "Ok");
 
+            string[] ret = new string[2];
             var vendObj = new { user, tokenkey, prodid, utransid, msid, amount, candemail };
             var jsonObj = JsonConvert.SerializeObject(vendObj);
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Constants.ipKey);
             HttpContent httpContent = new StringContent(jsonObj, Encoding.UTF8, "application/json");
-
             try
             {
                 var response = await httpClient.PostAsync(Constants.vendUrl, httpContent);
@@ -281,26 +303,47 @@ namespace PayVantage.Helpers
                     JObject content = JsonConvert.DeserializeObject<dynamic>(json);
                     if (content.Value<string>("data") == "Failed")
                     {
-                        await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
-                        return "";
+                        //await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                        ret[0] = "Unable to get data...";
+                        ret[1] = "failed";
+                        return ret;
                     }
                     else
                     {
-                        App.TheUser.TheKey = content.Value<string>("sess");
-                        await Application.Current.MainPage.DisplayAlert("Status", content.Value<string>("airtimeStatus"), "Ok");
-                        return "";
+
+                        App.TheUser.TheKey = !string.IsNullOrEmpty(content.Value<string>("sess")) ? App.TheUser.TheKey : content.Value<string>("sess");
+                        if (content.Value<string>("airtimeStatus") == "Success")
+                        {
+                            App.TheUser.VendBal = content.Value<string>("thevbal");
+                            App.TheUser.ProfBal = content.Value<string>("theprfbal");
+                            App.TheUser.TotBal = App.TheUser.VendBal + App.TheUser.ProfBal;
+                            ret[0] = content.Value<string>("statusMessage");
+                            ret[1] = "success";
+                            return ret;
+                        }
+                        //await Application.Current.MainPage.DisplayAlert("Status", content.Value<string>("airtimeStatus"), "Ok");
+
+                        ret[0] = content.Value<string>("statusMessage");
+                        ret[1] = "failed";
+                        return ret;
                     }
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
-                    return "";
+                    await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                    //await Application.Current.MainPage.DisplayAlert("Responeerror", response.StatusCode.ToString(), "Ok");
+                    ret[0] = "Network Error";
+                    ret[1] = "failed";
+                    return ret;
                 }
             }
             catch (Exception e)
             {
-                await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
-                return "";
+                await Application.Current.MainPage.DisplayAlert("token", "Unable to get data...", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Exception", e.Message + "\n\n" + e.InnerException + "\n\n" + e.Source + "\n\n" + e.StackTrace + "\n\n", "Ok");
+                ret[0] = "Unknown Error";
+                ret[1] = "failed";
+                return ret;
             }
         }
     }
