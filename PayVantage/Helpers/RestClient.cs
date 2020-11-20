@@ -37,21 +37,21 @@ namespace PayVantage.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    //await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Info", content, "Ok");
 
                     usar = JsonConvert.DeserializeObject<User>(content);
                 }
                 else
                 {
                     //await Application.Current.MainPage.DisplayAlert("Info", "Unable to login, check network...", "Ok");
-                    //await Application.Current.MainPage.DisplayAlert("Info", response.StatusCode.ToString(), "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Info", response.StatusCode.ToString(), "Ok");
                     usar = null;
                 }
             }
             catch (Exception e)
             {
                 //await Application.Current.MainPage.DisplayAlert("Info", "Unknow error, try again", "Ok");
-                //await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
                 usar = null;
             }
 

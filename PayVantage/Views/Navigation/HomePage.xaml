@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Frame BackgroundColor="LightPink"
+            <Frame BackgroundColor="{StaticResource PrimaryDarkColor}"
                     Grid.Row="0"
                     HasShadow="True"
                    CornerRadius="10">
@@ -43,7 +43,7 @@
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
                         Text="Name"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
@@ -52,7 +52,7 @@
                         FontSize="16"
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -61,7 +61,7 @@
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
                         Text="Vending Bal"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
@@ -70,7 +70,7 @@
                         FontSize="16"
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
@@ -79,7 +79,7 @@
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
                         Text="Profit Bal"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="1"
@@ -88,7 +88,7 @@
                         FontSize="16"
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
@@ -97,7 +97,7 @@
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
                         Text="Total Bal"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                     <Label
                         Grid.Row="3"
                         Grid.Column="1"
@@ -106,11 +106,11 @@
                         FontSize="16"
                         LineHeight="{OnPlatform Android=1.5,
                                                 Default=-1}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-White}" />
                 </Grid>
             </Frame>
 
-            <Frame BackgroundColor="White"
+            <Frame BackgroundColor="{StaticResource PrimaryColor}"
                     Grid.Row="1"
                     HasShadow="True">
                 <Label
@@ -119,25 +119,27 @@
                     LineHeight="{OnPlatform Android=1.5,
                                             Default=-1}"
                     Text="Select category below to view the products"
-                    TextColor="{DynamicResource Gray-900}" />
+                    TextColor="{DynamicResource Gray-White}" />
             </Frame>
 
             <ListView x:Name="CategsView"
                         Grid.Row="2"
                         ItemsSource="{Binding Categories}"
                       SeparatorVisibility="Default"
-                      SeparatorColor="Red">
+                      SeparatorColor="{StaticResource PrimaryDarkenColor}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
-                                         BackgroundColor="LightPink"
+                                         BackgroundColor="{StaticResource PrimaryDarkColor}"
                                             Padding="15,5"
                                          Margin="0,3">
                                 <Label Text="{Binding CatId}"
-                                    HorizontalOptions="Center"/>
+                                    HorizontalOptions="Center"
+                                       TextColor="{StaticResource Gray-100}"/>
                                 <Label Text="{Binding CatName}"
-                                    HorizontalOptions="End"/>
+                                    HorizontalOptions="End"
+                                       TextColor="{StaticResource Gray-100}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

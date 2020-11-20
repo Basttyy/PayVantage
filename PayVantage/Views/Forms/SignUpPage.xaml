@@ -10,7 +10,6 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PayVantage.Views.Forms"
-    xmlns:viewModel="clr-namespace:PayVantage.ViewModels.Forms"
     Title="Sign Up"
     BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                   iOSPhoneLandscape=LoginBackground-Landscape.png,
@@ -141,6 +140,13 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
+            <ActivityIndicator Color="{StaticResource SecondaryGradient}"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               HeightRequest="80"
+                               WidthRequest="80"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

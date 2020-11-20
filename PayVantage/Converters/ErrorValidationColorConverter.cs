@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PayVantage.Controls;
-using PayVantage.ViewModels.Forms;
 using PayVantage.Views.Forms;
 
 namespace PayVantage.Converters

@@ -36,7 +36,7 @@
                         Style="{StaticResource EntryStyle}"
                         Text="{Binding Email}" />
 
-                    <Label
+                    <!--<Label
                         Margin="15,0"
                         FontFamily="{StaticResource FontIcons}"
                         FontSize="18"
@@ -45,23 +45,11 @@
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
                         Text="&#xe707;"
                         TextColor="{DynamicResource Red}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" />-->
 
 
                 </Grid>
             </border:SfBorder>
-
-            <Label
-                x:Name="ValidationLabel"
-                Margin="15,-5,0,0"
-                FontSize="12"
-                IsVisible="{Binding Path=IsFocused, 
-                Source={x:Reference Email}, 
-                Converter={StaticResource StringToBooleanConverter}, 
-                ConverterParameter={x:Reference Email}}"
-                Text="Please enter the valid e-mail"
-                TextColor="{DynamicResource Red}"
-                VerticalOptions="FillAndExpand" />
 
         </StackLayout>
     </ContentView.Content>

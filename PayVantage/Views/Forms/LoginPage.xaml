@@ -10,7 +10,6 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PayVantage.Views.Forms"
-    xmlns:viewModel="clr-namespace:PayVantage.ViewModels.Forms"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -81,13 +80,27 @@
                             Text="Vantagerecharge login page" />
 
                         <!--  Entry to get email ID from user  -->
-                        <local:EmailEntry Grid.Row="2" Padding="0,24" />
+                        <!--<local:EmailEntry Grid.Row="2" Padding="0,24" />-->
+
+                        <!--  Entry to get password from user  -->
+                        <border:SfBorder
+                            Grid.Row="2"
+                            BorderColor="{Binding Source={x:Reference EmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
+                            Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                                x:Name="EmailEntry"
+                                Keyboard="Default"
+                                Placeholder="Usermane"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding Email}" />
+                        </border:SfBorder>
 
                         <!--  Entry to get password from user  -->
                         <border:SfBorder
                             Grid.Row="3"
                             BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
-                            Style="{StaticResource SfBorderStyle}">
+                            Style="{StaticResource SfBorderStyle}"
+                            Margin="0,16,0,16">
                             <control:BorderlessEntry
                                 x:Name="PasswordEntry"
                                 IsPassword="True"
@@ -152,6 +165,13 @@
 
                 </StackLayout>
             </ScrollView>
+            <ActivityIndicator Color="{StaticResource SecondaryGradient}"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               HeightRequest="80"
+                               WidthRequest="80"/>
         </Grid>
     </ContentPage.Content>
 

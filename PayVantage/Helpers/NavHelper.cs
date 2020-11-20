@@ -17,9 +17,9 @@ namespace PayVantage.Helpers
             var masterDetailPage = CurrentPage as MasterDetailPage;
 
             if (masterDetailPage != null)
-                await masterDetailPage.Detail.Navigation.PopAsync();
+                await masterDetailPage.Detail.Navigation.PopAsync(true);
             else
-                await Navigation.PopAsync();
+                await Navigation.PopAsync(true);
         }
 
         //public static void PushBack()
@@ -37,9 +37,9 @@ namespace PayVantage.Helpers
             var masterDetailPage = CurrentPage as MasterDetailPage;
 
             if (masterDetailPage != null)
-                await masterDetailPage.Detail.Navigation.PopModalAsync();
+                await masterDetailPage.Detail.Navigation.PopModalAsync(true);
             else
-                await Navigation.PopModalAsync();
+                await Navigation.PopModalAsync(true);
         }
         
         public static async Task PushModalAsync(Page page)

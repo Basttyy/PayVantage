@@ -65,7 +65,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
-    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -194,20 +193,5 @@
       <Project>{68833F89-8E1C-4E52-A4FF-239C33299F1A}</Project>
       <Name>PayVantage</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Pin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\TimeZone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ReSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ViewMode.png" />
   </ItemGroup>
 </Project>

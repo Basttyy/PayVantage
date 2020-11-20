@@ -65,7 +65,8 @@ namespace PayVantage.Converters
                 return true;
             }
 
-            var regex = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
+            //var regex = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
+            var regex = new Regex(@"\w+([-+.']\w+)*");
             return regex.IsMatch(email) && !email.EndsWith(".");
         }
     }

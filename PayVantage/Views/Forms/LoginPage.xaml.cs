@@ -25,6 +25,7 @@ namespace PayVantage.Views.Forms
         private string password;
         private string email;
         private bool isInvalidEmail;
+        private bool isbusy;
 
         #endregion
 
@@ -126,11 +127,31 @@ namespace PayVantage.Views.Forms
             }
         }
 
+        public bool IsBusy
+        {
+            get
+            {
+                return this.isbusy;
+            }
+
+            set
+            {
+                if (this.isbusy == value)
+                {
+                    return;
+                }
+
+                this.isbusy = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region methods
         private async void LoginClicked(object obj)
         {
+            IsBusy = true;
             if (string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(Password))
             {
 
@@ -140,6 +161,7 @@ namespace PayVantage.Views.Forms
                 StringToBooleanConverter converter = new StringToBooleanConverter();
                 if (converter.Convert(Email))
                 {
+                    IsBusy = false;
                     await Application.Current.MainPage.DisplayAlert("Alert", "Please enter valid email address", "Ok");
                 }
                 else
@@ -171,6 +193,7 @@ namespace PayVantage.Views.Forms
                     }
                 }
             }
+            IsBusy = false;
         }
 
         private async void SignUpClicked(object obj)
